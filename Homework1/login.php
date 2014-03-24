@@ -25,7 +25,7 @@ $accountArray = array("sayran" => '27121198',"sindrey" => 'foo' , "bar" => 'foob
 					}
 					else 
 					{
-						echo '<br>' . "Hmm... password is incorrect.. try one more time : )" . '<br>';
+						echo "Hmm... password is incorrect.. try one more time : )" . '<br>';
 					}
 				}
 			else
@@ -33,14 +33,17 @@ $accountArray = array("sayran" => '27121198',"sindrey" => 'foo' , "bar" => 'foob
 				echo "Hmm stange thing... It seams you have been mistaken..";
 			}
 		}
+		else 
+		{
+			echo " Fields must NOT be empty !";
+		}
 	}
 	else if (isset($_POST['send']) && (($user_login != '')  || ($user_password!='')))
 	{
 		echo " Login and Password fields must NOT be empty !";
 	}
-}
 
-elseif ($site_logged_in = true) {
+if ($site_logged_in = true) {
 	session_start();
 	if (isset($_POST['logout']))
 	{
@@ -50,9 +53,11 @@ elseif ($site_logged_in = true) {
 	}
 	else
 	{
-		echo '<br>' . 'Hello ' . htmlspecialchars($_POST["login"]) . '!' . '<br>';
+		echo '<br>' . 'Hello ' . $_SESSION['username'] . '!' . '<br>';
 	}
 }
+}
+
 ?>
 
 <html>
@@ -60,7 +65,9 @@ elseif ($site_logged_in = true) {
 	</head>
 	<body>
 		<?php if ($site_logged_in == true): ?>
+			<form method = "post" action = "">
 			<input type = "submit" value = "Log-out" name = 'logout'>
+			<a href="login.php">How about reloud your page ? </a>
 			<?php endif; ?>
 		<?php if (SITE_ENABLED == true && $site_logged_in == false) : ?>	
 			<form method = "post" action = "">

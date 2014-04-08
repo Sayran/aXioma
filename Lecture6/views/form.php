@@ -6,8 +6,8 @@
     News Content: <br>
     <input type="text" name="content"  value="" /> <br>
     Type: <br>
-    <input type="radio" name="active" value=active checked/>
-    <input type="radio" name="in_active" value=inactive /> <br>
+    <input type="radio" name="active" value=active  checked/>
+    <input type="radio" name="in_active" value=inactive  /> <br>
     <input type="submit" value="Save changes">
     <?php endif; ?>
     <?php if($_GET['action'] == 'add'):?>
@@ -15,7 +15,7 @@
         <input type="text" name="title" value=""/> <br>
         News Content: <br>
         <input type="text" name="content"  value="" /> <br>
-        <input type="submit" value="Save changes">
+        <input type="submit" name="save" value="Save changes">
 
     <?php endif; ?>
 </form>

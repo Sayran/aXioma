@@ -3,7 +3,9 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: ?action=list");
 }
-
+if(isset($_POST['save'])){
+$new_news = newsAdd();
+}
 ?>
 
 

@@ -3,6 +3,7 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header("Location: ?action=list");
 }
+
 $current = $_POST[$news['id']];
 ?>
 

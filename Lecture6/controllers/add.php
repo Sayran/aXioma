@@ -1,11 +1,13 @@
 <?php
 //logica dobavlenia
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+//    $new_news =
+        newsAdd();
     header("Location: ?action=list");
 }
-if(isset($_POST['save'])){
-$new_news = newsAdd();
-}
+//if(isset($_POST['save'])){
+//$new_news = newsAdd();
+//}
 ?>
 
 

@@ -2,12 +2,12 @@
 <form method="post" action="">
     <?php if ($_GET['action'] == 'edit'):?>
     News Title: <br>
-    <input type="text" name="title" value=""/> <br>
+    <input type="text" name="title" value="<?php echo $current_array['title'];?>"/> <br>
     News Content: <br>
-    <input type="text" name="content"  value="" /> <br>
+    <input type="text" name="content"  value="<?php echo $current_array['content'];?>" /> <br>
     Type: <br>
-    <input type="radio" name="active" value=active  checked/>
-    <input type="radio" name="in_active" value=inactive  /> <br>
+    <input type=radio name="active" value=active  checked/>Active
+    <input type=radio name="active" value=inactive  />Inactive <br>
     <input type="submit" value="Save changes">
     <?php endif; ?>
     <?php if($_GET['action'] == 'add'):?>

@@ -1,10 +1,15 @@
 <?php
 //logika vivoda edita, dostajom i izmenjaem, peresohranenie izmenennogo
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    header("Location: ?action=list");
+    $current = $_GET['id'];
+    newsEdit($current);
+//    header("Location: ?action=list");
 }
-
-$current = $_POST[$news['id']];
+$edited_news = getNewsList();
+$current = $_GET['id'];
+$current_array = currentArray($edited_news,$current);
+//newsEdit($current);
+echo $current;
 ?>
 
 

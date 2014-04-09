@@ -17,6 +17,7 @@ if (!array_key_exists('action', $_GET)) {
     header("Location: ?action=list");
 } else {
     switch ($_GET['action']) {
+
         case 'add':
             include(CONTROLLER_PATH . 'add.php');
             break;

@@ -1,4 +1,2 @@
-2|Hello|Do you hear me ?|true
-3|Awhhh|Let me start this song to hear the beat of your heart...|true
-4|Hell is waiting|to the Hell !!!|true
-4|Hell is waiting|to the neatwher Hell !!!|false
+2|olllololo|trololo|true
+4|One Time|the Hell|true

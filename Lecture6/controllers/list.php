@@ -10,6 +10,7 @@
 </head>
 <body>
 <?php include(TEMPLATE_PATH . 'list.php'); ?>
+<br>
 <a href="?action=add">Add</a>
 </body>
 </html>

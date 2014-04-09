@@ -25,7 +25,7 @@ if (!array_key_exists('action', $_GET)) {
             include(CONTROLLER_PATH . 'edit.php');
             break;
         case 'delete':
-
+            include(CONTROLLER_PATH . 'delete.php');
             break;
         case 'list':
             include(CONTROLLER_PATH . 'list.php');

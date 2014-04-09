@@ -3,12 +3,12 @@
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $current = $_GET['id'];
     newsEdit($current);
-//    header("Location: ?action=list");
+    header("Location: ?action=list");
 }
 $edited_news = getNewsList();
 $current = $_GET['id'];
 $current_array = currentArray($edited_news,$current);
-//newsEdit($current);
+
 echo $current;
 ?>
 

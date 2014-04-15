@@ -1,0 +1,4 @@
+Vasja|false
+Evlampij|true
+Inokentij|true
+Borsh'|false

@@ -1,0 +1,4 @@
+great|false
+fine|false
+awesome|false
+terrible|true

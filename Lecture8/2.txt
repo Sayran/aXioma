@@ -1,0 +1,5 @@
+red|flase
+blue|false
+green|true
+yellow|false
+black|false

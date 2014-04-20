@@ -1,0 +1,4 @@
+Dmitrij|false
+Inokentij|false
+Evlampij|false
+Epistafij|true

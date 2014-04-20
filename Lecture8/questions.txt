@@ -1,4 +1,5 @@
 1|What is your name?|true
-2|How do you do ?|true
-3|What is your favorite color?|true
-4|Cat name?|true
+2|What is your favorite color?|true
+3|What is your cat name?|true
+4|How old are you?|true
+5|Hello world?|true

@@ -1,0 +1,3 @@
+yes it is!|true
+foo?|false
+bar|false

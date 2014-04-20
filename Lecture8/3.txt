@@ -1,0 +1,4 @@
+Semjon|false
+Barsik|true
+Snezhok|false
+Tima|false

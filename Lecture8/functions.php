@@ -38,3 +38,7 @@ function questionsOrder() {
     }
     return $order;
 }
+function validate($data){
+    $data = trim(strip_tags($data));
+    return $data;
+}

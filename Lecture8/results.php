@@ -14,6 +14,7 @@ $answers = $_SESSION['answers'];
     <title>Results</title>
 </head>
 <body>
+<?php echo $_SESSION['name']."<br>"; ?>
 <?php foreach($answers as $key => $answer): ?>
 Question ID: <?php echo $key; ?><br>
 Your answer: <?php echo $answer['answer']; ?><br>

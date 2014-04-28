@@ -1,4 +1,4 @@
-<?php
+<?php echo"<pre>";
 /**
  * Created by PhpStorm.
  * User: sayran
@@ -22,10 +22,11 @@ class FileHelper
             file_put_contents($this->file,$data,FILE_APPEND);
             }
 
-        protected function get($file)
+        public  function get($file)
             {
-            $array = file_get_contents($file);
+            $array = explode("\n",file_get_contents($file));
             return $array;
             }
 
     }
+echo "hello";

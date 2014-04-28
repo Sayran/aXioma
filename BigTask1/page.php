@@ -14,12 +14,20 @@ class Page extends BaseObject
     /**
      * @return mixed
      */
-        public function getSlug ()
+        public  function getSlug ()
             {
             return $this->slug;
             }
 
-        protected  function redirect($slug)
+    /**
+     * @param mixed $slug
+     */
+        public function setSlug ($slug)
+            {
+            $this->slug = $slug;
+            }
+
+        protected   function redirect($slug)
             {
             header("http://localhost/".$slug);
             }

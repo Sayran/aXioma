@@ -5,7 +5,7 @@
  * Date: 4/28/14
  * Time: 9:24 AM
  */
-include("filehelper.php");
+require_once("filehelper.php");
 interface BaseFunc
     {
         function save();
@@ -21,5 +21,4 @@ class BaseObject extends FileHelper
         protected $title;
         protected $content;
         protected $date;
-
     }

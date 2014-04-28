@@ -5,7 +5,7 @@
  * Date: 4/28/14
  * Time: 9:23 AM
  */
-include("baseobject.php");
+require_once("baseobject.php");
 class News extends BaseObject implements BaseFunc
     {
         protected $file = "news.txt";
@@ -14,6 +14,13 @@ class News extends BaseObject implements BaseFunc
         protected $content;
         protected $date;
 
+    /**
+     * @return string
+     */
+        public function getFile ()
+            {
+            return $this->file;
+            }
     /**
      * @param mixed $content
      */
@@ -96,6 +103,10 @@ class News extends BaseObject implements BaseFunc
                 {
                     $this->populate($id);
                 }
+                else
+                {
+                    $this->setId($this->generateId());
+                }
             }
         public  function populate($id)
             {
@@ -112,12 +123,12 @@ class News extends BaseObject implements BaseFunc
                     $this->setDate($item[3]);
                     return 0;
                 }
-                else
-                {
-                    return 1;
-                }
             }
             return 0;
             }
-
+        private function generateId()
+            {
+                $id=date(time())-1398680691-1;
+                return $id;
+            }
     }

@@ -3,8 +3,9 @@ $code = file_get_contents('code.txt');
 $keywords = array('function', 'Word', 'Integer', 'begin', 'if', 'then', 'and', 'end', 'var', 'while', 'do', 'Dec', 'Inc', '<>', '.', '>', ':=', '#', '=', '<', ':', ';', '(', ')', '+',"'","-","/","*");
 print_r('Code: ' . PHP_EOL);
 print_r($code . PHP_EOL);
-//end_Line();
-//print_r('__________________________________________' . PHP_EOL);
+end_Line();
+print_r('__________________________________________' . PHP_EOL);
+lab1($keywords,$code);
 
 function lab1($keywords, $code)
 {

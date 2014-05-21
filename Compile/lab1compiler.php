@@ -1,23 +1,24 @@
 <?php echo '<pre>';
 $code = file_get_contents('code.txt');
-$keywords = array('function', 'Word', 'Integer', 'begin', 'if', 'then', 'and', 'end', 'var', 'while', 'do', 'Dec', 'Inc', '<>', '.', '>', ':=', '#', '=', '<', ':', ';', '(', ')', '+',"'","-","/","*");
+$keywords = array( 'procedure', ';', 'case', 'begin', 'Boolean', 'Longint', ':=', '(', ')', 'if', 'then', 'of', 'or', 'else', '<>', '.', ',', '<', '>', '=', 'end', ':', ';', '+', "'", "-", "/", "*", );
 print_r('Code: ' . PHP_EOL);
 print_r($code . PHP_EOL);
 end_Line();
 print_r('__________________________________________' . PHP_EOL);
-lab1($keywords,$code);
+lab1($keywords, $code);
 
-function lab1($keywords, $code)
-{
+function lab1 ($keywords, $code)
+    {
     $codeLen = strlen($code);
     $buffer = '';
     $i = 0;
     $main_table = '';
-    $error=0;
+    $error = 0;
 
     $indentificator_table = array();
     $numeric_constant_table = array();
     $keywords_table = array();
+    $literals_table = array();
     $place_table = array();
 
     while ($i < $codeLen) {
@@ -36,15 +37,21 @@ function lab1($keywords, $code)
                             $main_table = $main_table . ($buffer . chr(9) . '| Type: keywords ' . chr(9) . '| Index: ' . array_search($buffer, $keywords_table) . '<br>');
 
                         }
-                        array_push($place_table, array($buffer, 'keywords'));
+                        array_push($place_table, array( $buffer, 'keywords' ));
                         $buffer = '';
 
+                    } elseif($buffer == 'R'){
+                        if(!in_array($buffer,$literals_table)){
+                            array_push($literals_table,'R');
+                        }
+                        $main_table = $main_table . ('R' . chr(9) . '| Type: literal ' . chr(9) . '| Index: ' . array_search($buffer,$literals_table) . '<br>');
+                        $buffer = '';
                     } else {
                         if (!in_array($buffer, $indentificator_table)) {
                             array_push($indentificator_table, $buffer);
                         }
                         $main_table = $main_table . ($buffer . chr(9) . '| Type: indentificator ' . chr(9) . '| Index: ' . array_search($buffer, $indentificator_table) . '<br>');
-                        array_push($place_table, array($buffer, 'indentificator'));
+                        array_push($place_table, array( $buffer, 'indentificator' ));
                         $buffer = '';
 
                     }
@@ -57,7 +64,7 @@ function lab1($keywords, $code)
                                 array_push($keywords_table, ':=');
                             }
                             $main_table = $main_table . (':= ' . chr(9) . '| Type: keywords ' . chr(9) . '| Index: ' . array_search(':=', $keywords_table) . '<br>');
-                            array_push($place_table, array(':=', 'keywords'));
+                            array_push($place_table, array( ':=', 'keywords' ));
                             $i = $i + 2;
                             continue;
                         } else {
@@ -67,7 +74,7 @@ function lab1($keywords, $code)
                             }
 
                             $main_table = $main_table . (': ' . chr(9) . '| Type: keywords ' . chr(9) . '| Index: ' . array_search(':', $keywords_table) . '<br>');
-                            array_push($place_table, array(':', 'keywords'));
+                            array_push($place_table, array( ':', 'keywords' ));
                         }
                     } elseif ($code[$i] == '<' && isset($code[$i + 1])) {
                         if ($code[$i + 1] == '>') {
@@ -76,7 +83,7 @@ function lab1($keywords, $code)
 
                             }
                             $main_table = $main_table . ('<> ' . chr(9) . '| Type: keywords ' . chr(9) . '| Index: ' . array_search('<>', $keywords_table) . '<br>');
-                            array_push($place_table, array('<>', 'keywords'));
+                            array_push($place_table, array( '<>', 'keywords' ));
                             $i = $i + 2;
                             continue;
                         } else {
@@ -86,15 +93,28 @@ function lab1($keywords, $code)
                             }
 
                             $main_table = $main_table . ('<' . chr(9) . '| Type: keywords ' . chr(9) . '| Index: ' . array_search('<', $keywords_table) . '<br>');
-                            array_push($place_table, array('<', 'keywords'));
+                            array_push($place_table, array( '<', 'keywords' ));
                         }
+                    } elseif ($code[$i] == "'" && isset($code[$i+2])){
+                        if($code[$i+2] == "'"){
+                            if(!in_array($code[$i+1], $literals_table)){
+                                array_push($literals_table,$code[$i+1]);
+                            }
+                            if(!in_array($code[$i], $keywords_table)){
+                                array_push($keywords_table, "'");
+                            }
+                        }
+                        $main_table = $main_table . ("'" . chr(9) . '| Type: keywords '. chr(9) . '| Index: ' . array_search("'", $keywords_table) . '<br>');
+                        $main_table = $main_table . ($code[$i+1] . chr(9) . '| Type: literal ' . chr(9) .'| Index: ' . array_search($code[$i+1],$literals_table) . '<br>');
+                        $main_table = $main_table . ("'" . chr(9) . '| Type: keywords '. chr(9) . '| Index: ' . array_search("'", $keywords_table) . '<br>');
+                        $i = $i + 3;
                     } else {
                         if (!in_array($code[$i], $keywords_table)) {
                             array_push($keywords_table, $code[$i]);
 
                         }
                         $main_table = $main_table . ($code[$i] . chr(9) . '| Type: keywords ' . chr(9) . '| Index: ' . array_search($code[$i], $keywords_table) . '<br>');
-                        array_push($place_table, array($code[$i], 'keywords'));
+                        array_push($place_table, array( $code[$i], 'keywords' ));
                     }
 
                 }
@@ -110,12 +130,13 @@ function lab1($keywords, $code)
                             }
 
                             $main_table = $main_table . ('13 ' . chr(9) . '| Type: num. constant ' . chr(9) . '| Index: ' . array_search(13, $numeric_constant_table) . '<br>');
-                            array_push($place_table, array(13, 'constant'));
+                            array_push($place_table, array( 13, 'constant' ));
                             $i = $i + 2;
                             continue;
 
                         } else {
                             echo '<script>alert("Error, no such number as: ' . $code[$i] . ' ,at index ' . $i . '");</script>';
+
                             return -1;
                         }
 
@@ -124,14 +145,16 @@ function lab1($keywords, $code)
                             array_push($numeric_constant_table, $code[$i]);
                         }
                         $main_table = $main_table . ($code[$i] . chr(9) . '| Type: num. constant ' . chr(9) . '| Index: ' . array_search($code[$i], $numeric_constant_table) . '<br>');
-                        array_push($place_table, array($code[$i], 'constant'));
+                        array_push($place_table, array( $code[$i], 'constant' ));
                     }
                 } else {
                     echo '<script>alert("Error, no such number as: ' . $code[$i] . ' ,at index ' . $i . '");</script>';
+
                     return -1;
                 }
             } elseif (!ctype_space($code[$i])) {
                 echo '<script>alert("Error, no such symbol as: ' . $code[$i] . ' ,at index ' . $i . '");</script>';
+
                 return -1;
             }
         } else {
@@ -146,20 +169,23 @@ function lab1($keywords, $code)
     table_Print($keywords_table);
     print_r('Indentificator table: ');
     table_Print($indentificator_table);
+    print_r('Literal table: ');
+    table_Print($literals_table);
     print_r('Numeric constant table: ');
     table_Print($numeric_constant_table);
     table_Print($place_table);
+
     return $place_table;
-}
+    }
 
-function end_Line()
-{
+function end_Line ()
+    {
     print (PHP_EOL);
-}
+    }
 
-function table_Print($array)
-{
+function table_Print ($array)
+    {
     print_r($array);
-}
+    }
 
 ?>

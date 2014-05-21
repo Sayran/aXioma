@@ -1,11 +1,16 @@
-function TEditor.CharPtr(P: Word; Target: Integer): Word;
-var  Pos: Integer;
-begin 
-  Pos := 0;
-while (Pos < Target)and(P< BufLen) and (BufChar(P) <> #13) do  begin
-    if BufChar(P) = #9 then Pos := Pos + 7;
-    Inc(Pos);    Inc(P);
+procedure TIndicator.SetValue(ALocation: TPoint; AModified: Boolean);
+begin
+ case Operator of
+            '+': SetDisplay(Operand + R);
+            '-': SetDisplay(Operand - R);
+            '*': SetDisplay(Operand * R);
+            '/': if R = 0 then Error else SetDisplay(Operand / R);
+end;
+  if (Longint(Location) <> Longint(ALocation)) or
+    (Modified <> AModified) then
+  begin
+    Location := ALocation;
+    Modified := AModified;
+    DrawView;
   end;
-  if Pos  > Target then Dec(P);
-  CharPtr := P;
 end;

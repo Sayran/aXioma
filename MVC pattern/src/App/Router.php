@@ -15,11 +15,11 @@ class Router
 
         $path = explode('/', $_SERVER['REQUEST_URI']);
 
-        if (!empty($path[1]) && empty($path[2])) {
-            $controller = ucfirst($path[1]) . 'Controller';
-        } elseif (!empty($path[1]) && !empty($path[2])) {
-            $controller = ucfirst($path[1]) . 'Controller';
-            $action = lcfirst($path[2]) . 'Action';
+        if (!empty($path[2]) && empty($path[3])) {
+            $controller = ucfirst($path[2]) . 'Controller';
+        } elseif (!empty($path[2]) && !empty($path[3])) {
+            $controller = ucfirst($path[2]) . 'Controller';
+            $action = lcfirst($path[3]) . 'Action';
         }
 
 
